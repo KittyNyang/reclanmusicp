@@ -1,18 +1,34 @@
 						<!DOCTYPE html>
-<html lang="en">
+  <!-- 
+ 
+          
+            
+ ▄▄▄   ▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄    ▄ ▄▄   ▄▄ ▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄▄    ▄▄   ▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄        ▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   
+█   █ █ █   █       █       █  █ █  █  █  █ █  █ █  █      █  █  █ █       █  █  █▄█  █  █ █  █       █   █       █  █       █   █      █      █  █ █  █       █   ▄  █  
+█   █▄█ █   █▄     ▄█▄     ▄█  █▄█  █   █▄█ █  █▄█  █  ▄   █   █▄█ █   ▄▄▄▄█  █       █  █ █  █  ▄▄▄▄▄█   █       █  █    ▄  █   █      █  ▄   █  █▄█  █    ▄▄▄█  █ █ █  
+█      ▄█   █ █   █   █   █ █       █       █       █ █▄█  █       █  █  ▄▄   █       █  █▄█  █ █▄▄▄▄▄█   █     ▄▄█  █   █▄█ █   █      █ █▄█  █       █   █▄▄▄█   █▄▄█▄ 
+█     █▄█   █ █   █   █   █ █▄     ▄█  ▄    █▄     ▄█      █  ▄    █  █ █  █  █       █       █▄▄▄▄▄  █   █    █     █    ▄▄▄█   █▄▄▄   █      █▄     ▄█    ▄▄▄█    ▄▄  █
+█    ▄  █   █ █   █   █   █   █   █ █ █ █   █ █   █ █  ▄   █ █ █   █  █▄▄█ █  █ ██▄██ █       █▄▄▄▄▄█ █   █    █▄▄   █   █   █       █  █  ▄   █ █   █ █   █▄▄▄█   █  █ █
+█▄▄▄█ █▄█▄▄▄█ █▄▄▄█   █▄▄▄█   █▄▄▄█ █▄█  █▄▄█ █▄▄▄█ █▄█ █▄▄█▄█  █▄▄█▄▄▄▄▄▄▄█  █▄█   █▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄█▄▄▄▄▄▄▄█  █▄▄▄█   █▄▄▄▄▄▄▄█  █▄█ █▄▄█ █▄▄▄█ █▄▄▄▄▄▄▄█▄▄▄█  █▄█
+
+
+		  
+		  
+		                                                                                                                      -->
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RE CLAN 뮤직 플레이어</title>
-  <!-- Load FontAwesome icons -->
+  <!-- 아이콘 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-  <!-- CSS style -->
+  <!-- CSS 스타일 -->
   <style>
     body {
       background-color: lightgreen;
 
-      /* Smoothly transition the background color */
+      /* 백그라운드 컬러 */
       transition: background-color .5s;
     }
 
@@ -66,7 +82,7 @@
       padding: 25px;
       opacity: 0.8;
 
-      /* Smoothly transition the opacity */
+      /* 불투명도를 부드럽게 전환 */
       transition: opacity .2s;
     }
 
@@ -84,7 +100,7 @@
       align-items: center;
     }
 
-    /* Modify the appearance of the slider */
+    /* 슬라이더 모양 수정 */
     .seek_slider,
     .volume_slider {
       -webkit-appearance: none;
@@ -97,7 +113,7 @@
       transition: opacity .2s;
     }
 
-    /* Modify the appearance of the slider thumb */
+    /* 슬라이더 썸 모양 수정 */
     .seek_slider::-webkit-slider-thumb,
     .volume_slider::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -167,7 +183,7 @@
     </div>
   </div>
 
-  <!-- Main script for the player -->
+  <!-- 뮤직플레이어 매인 스크립트 -->
   <script>
     let now_playing = document.querySelector(".now-playing");
     let track_art = document.querySelector(".track-art");
@@ -187,10 +203,10 @@
     let isPlaying = false;
     let updateTimer;
 
-    // Create new audio element
+    // 새로운 오디오 생성 (document)
     let curr_track = document.createElement('audio');
 
-    // Define the tracks that have to be played
+    // 재생해야 하는 트랙 정의
     let track_list = [
       {
         name: "Lost Princess",
@@ -288,41 +304,41 @@
       clearInterval(updateTimer);
       resetValues();
 
-      // Load a new track
+      // 새 트랙 불러오기
       curr_track.src = track_list[track_index].path;
       curr_track.load();
 
-      // Update details of the track
+      // 트랙 디테일 업데이트
       track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
       track_name.textContent = track_list[track_index].name;
       track_artist.textContent = track_list[track_index].artist;
-      now_playing.textContent = "재생중.. " + (track_index + 1) + " 중 " + track_list.length;
+      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.";
 
-      // Set an interval of 1000 milliseconds for updating the seek slider
+      // 탐색 슬라이더 업데이트 간격 - 1000밀리초.
       updateTimer = setInterval(seekUpdate, 1000);
 
-      // Move to the next track if the current one finishes playing
+      // 현재 트랙 재생이 끝나면 다음 트랙으로 이동
       curr_track.addEventListener("ended", nextTrack);
 
-      // Apply a random background color
+      // 임의의 배경색 적용
       random_bg_color();
     }
 
     function random_bg_color() {
 
-      // Get a random number between 64 to 256 (for getting lighter colors)
+      // 64에서 256 사이의 임의의 숫자.
       let red = Math.floor(Math.random() * 256) + 64;
       let green = Math.floor(Math.random() * 256) + 64;
       let blue = Math.floor(Math.random() * 256) + 64;
 
-      // Construct a color withe the given values
+      // 주어진 값으로 색 구성
       let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
 
-      // Set the background to that color
+      // 배경을 해당 색상으로 설정
       document.body.style.background = bgColor;
     }
 
-    // Reset Values
+    // 값 재설정
     function resetValues() {
       curr_time.textContent = "00:00";
       total_duration.textContent = "00:00";
@@ -338,7 +354,7 @@
       curr_track.play();
       isPlaying = true;
 
-      // Replace icon with the pause icon
+      // 일시 중지 아이콘 변경
       playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
     }
 
@@ -346,7 +362,7 @@
       curr_track.pause();
       isPlaying = false;
 
-      // Replace icon with the play icon
+      // 재생 아이콘 변경
       playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
     }
 
@@ -378,18 +394,18 @@
     function seekUpdate() {
       let seekPosition = 0;
 
-      // Check if the current track duration is a legible number
+      // 현재 트랙 길이가 읽을 수 있는 숫자인지 확인
       if (!isNaN(curr_track.duration)) {
         seekPosition = curr_track.currentTime * (100 / curr_track.duration);
         seek_slider.value = seekPosition;
 
-        // Calculate the time left and the total duration
+        // 남은 시간과 총 소요 시간 계산
         let currentMinutes = Math.floor(curr_track.currentTime / 60);
         let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
         let durationMinutes = Math.floor(curr_track.duration / 60);
         let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
 
-        // Adding a zero to the single digit time values
+        // 한 자리 시간 값에 0 더하기
         if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
         if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
         if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
@@ -400,7 +416,7 @@
       }
     }
 
-    // Load the first track in the tracklist
+    // 트랙 목록의 첫 번째 트랙 로드
     loadTrack(track_index);
   </script>
 </body>
