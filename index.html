@@ -1,0 +1,669 @@
+						<!DOCTYPE html>
+  <!-- 
+ 
+          
+            
+██╗  ██╗██╗████████╗████████╗██╗   ██╗███╗   ██╗██╗   ██╗ █████╗ ███╗   ██╗ ██████╗     ███╗   ███╗██╗   ██╗███████╗██╗ ██████╗    ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ 
+██║ ██╔╝██║╚══██╔══╝╚══██╔══╝╚██╗ ██╔╝████╗  ██║╚██╗ ██╔╝██╔══██╗████╗  ██║██╔════╝     ████╗ ████║██║   ██║██╔════╝██║██╔════╝    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗
+█████╔╝ ██║   ██║      ██║    ╚████╔╝ ██╔██╗ ██║ ╚████╔╝ ███████║██╔██╗ ██║██║  ███╗    ██╔████╔██║██║   ██║███████╗██║██║         ██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝
+██╔═██╗ ██║   ██║      ██║     ╚██╔╝  ██║╚██╗██║  ╚██╔╝  ██╔══██║██║╚██╗██║██║   ██║    ██║╚██╔╝██║██║   ██║╚════██║██║██║         ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗
+██║  ██╗██║   ██║      ██║      ██║   ██║ ╚████║   ██║   ██║  ██║██║ ╚████║╚██████╔╝    ██║ ╚═╝ ██║╚██████╔╝███████║██║╚██████╗    ██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║
+╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝      ╚═╝   ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝    ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+
+
+		  
+		  
+		                                                                                                                      -->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RE CLAN 뮤직 플레이어</title>
+  <!-- 아이콘 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <!-- CSS 스타일 -->
+  <style>
+    body {
+      background-color: lightgreen;
+
+      /* 백그라운드 컬러 */
+      transition: background-color .5s;
+    }
+
+    .player {
+      height: 95vh;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .details {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .track-art {
+      margin: 25px;
+      height: 250px;
+      width: 250px;
+      background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+      background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+      background-size: cover;
+      border-radius: 15%;
+    }
+
+    .now-playing {
+      font-size: 1rem;
+    }
+
+    .track-name {
+      font-size: 2rem;
+    }
+
+    .track-artist {
+      font-size: 1.2rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .playpause-track,
+    .prev-track,
+    .next-track {
+      padding: 25px;
+      opacity: 0.8;
+
+      /* 불투명도를 부드럽게 전환 */
+      transition: opacity .2s;
+    }
+
+    .playpause-track:hover,
+    .prev-track:hover,
+    .next-track:hover {
+      opacity: 1.0;
+    }
+
+    .slider_container {
+      width: 75%;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 슬라이더 모양 수정 */
+    .seek_slider,
+    .volume_slider {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 5px;
+      background: black;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    /* 슬라이더 썸 모양 수정 */
+    .seek_slider::-webkit-slider-thumb,
+    .volume_slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      background: white;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .seek_slider:hover,
+    .volume_slider:hover {
+      opacity: 1.0;
+    }
+
+    .seek_slider {
+      width: 60%;
+    }
+
+    .volume_slider {
+      width: 30%;
+    }
+
+    .current-time,
+    .total-duration {
+      padding: 10px;
+    }
+
+    i.fa-volume-down,
+    i.fa-volume-up {
+      padding: 10px;
+    }
+
+    i.fa-play-circle,
+    i.fa-pause-circle,
+    i.fa-step-forward,
+    i.fa-step-backward {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="player">
+    <div class="details">
+      <div class="now-playing">PLAYING x OF y</div>
+      <div class="track-art"></div>
+      <div class="track-name">Track Name</div>
+      <div class="track-artist">Track Artist</div>
+    </div>
+    <div class="buttons">
+      <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-2x"></i></div>
+      <div class="playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle fa-5x"></i></div>
+      <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward fa-2x"></i></div>
+    </div>
+    <div class="slider_container">
+      <div class="current-time">00:00</div>
+      <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+      <div class="total-duration">00:00</div>
+    </div>
+    <div class="slider_container">
+      <i class="fa fa-volume-down"></i>
+      <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+      <i class="fa fa-volume-up"></i>
+    </div>
+  </div>
+
+  <!-- 뮤직플레이어 매인 스크립트 -->
+  <script>
+    let now_playing = document.querySelector(".now-playing");
+    let track_art = document.querySelector(".track-art");
+    let track_name = document.querySelector(".track-name");
+    let track_artist = document.querySelector(".track-artist");
+
+    let playpause_btn = document.querySelector(".playpause-track");
+    let next_btn = document.querySelector(".next-track");
+    let prev_btn = document.querySelector(".prev-track");
+
+    let seek_slider = document.querySelector(".seek_slider");
+    let volume_slider = document.querySelector(".volume_slider");
+    let curr_time = document.querySelector(".current-time");
+    let total_duration = document.querySelector(".total-duration");
+
+    let track_index = 0;
+    let isPlaying = false;
+    let updateTimer;
+
+    // 새로운 오디오 생성 (document)
+    let curr_track = document.createElement('audio');
+
+    // 재생해야 하는 트랙 정의
+    let track_list = [
+      {
+        name: "Lost Princess",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카)",
+        image: "image/1.jpg",
+        path: "audio/01.Lost Princess.mp3"
+      },
+      {
+        name: "연결하는 것",
+        artist: "유이(CV:타네다 리사), 히요리(CV:히가시야마 나오), 레이(CV:하야미 사오리)",
+        image: "image/2.jpg",
+        path: "audio/02.つなぐもの.mp3"
+      },
+      {
+        name: "빛나는 미래",
+        artist: "노조미 (CV : 히카사 요코), 치카 (CV : 후쿠하라 아야카), 츠무기 (CV : 키토 이부키)",
+        image: "image/3.jpg",
+        path: "audio/03.Shining Future.mp3",
+      },
+	{
+        name: "너의 미소를 보고 싶으니까",
+        artist: "노조미(CV:히카사 요코)",
+        image: "image/3.jpg",
+        path: "audio/04.君の笑顔が見たいから.mp3"
+      },
+		{
+        name: "바람에 맹세",
+        artist: "노조미 (CV : 히카사 요코), 치카 (CV : 후쿠하라 아야카), 츠무기 (CV : 키토 이부키)",
+        image: "image/5.jpg",
+        path: "audio/05.風への誓い.mp3"
+      },
+		{
+        name: "아마노 잭 하트!",
+        artist: "미미 (CV : 히다카 리나), 미소기 (CV : 모리 세이 스미레), 쿄우카 (CV : 고쿠라 유이), 츠무기 (CV : 키도 의상)",
+        image: "image/6.jpg",
+        path: "audio/06.アマノジャクハート！.mp3"
+      },
+		{
+        name: "스마일리 콘트라스트",
+        artist: "하츠네(CV:오하시 아야카), 시오리(CV:코시미즈 아미), 노조미(CV:히카사 요코), 리마(CV:도쿠이 푸른 하늘)",
+        image: "image/7.jpg",
+        path: "audio/07.Smiley Contrast.mp3"
+      },
+		{
+        name: "리틀 어드벤처",
+        artist: "미미 (CV : 히다카 리나), 미소기 (CV : 모리 세이 스미레), 쿄우카 (CV : 고쿠라 유이)",
+        image: "image/8.jpg",
+        path: "audio/08.リトルアドベンチャー.mp3"
+      },
+		{
+        name: "에가오의 내 집",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카), 사렌 (CV : 호리에 유이), 참새 (CV : 유키 아오이)",
+        image: "image/9.jpg",
+        path: "audio/09.えがおのマイホーム.mp3"
+      },
+		{
+        name: "킨키라☆해피네스!",
+        artist: "아키노 (CV : 마츠 아라시), 미후 유 (CV : 타쇼 아즈사), 유카리 (CV : 이마이 아사미), 타마키 (CV : 누마쿠라 아이미)",
+        image: "image/10.jpg",
+        path: "audio/10.キンキラ☆ハピネス！.mp3"
+      },
+		{
+        name: "무관심 코드",
+        artist: "오노 타카미츠",
+        image: "image/11.jpg",
+        path: "audio/11.Aloofness Code.mp3"
+      },
+		{
+        name: "더! 두 사람의 파~티~나이트",
+        artist: "시노부(CV:오츠보 유카), 미야코(CV:우미야텐)",
+        image: "image/12.jpg",
+        path: "audio/12.もっと！ふたりのパ～ティ～ナイト.mp3"
+      },
+		{
+        name: "딩동 성야♪",
+        artist: "아야네(CV:세리자와 유), 크루미(CV:우에다 카나)",
+        image: "image/13.jpg",
+        path: "audio/13.Ding Dong Holy Night♪.mp3"
+      },
+		{
+        name: "커넥팅 해피!!",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카)",
+        image: "image/14.jpg",
+        path: "audio/14.Connecting Happy!!.mp3"
+      },
+		{
+        name: "우마뾰이 전설",
+        artist: "스페셜 위크 (CV. 와키 아즈미), 사일런스 스즈카 (CV. 타카노 마리카), 토우 카이 테이오 (CV. Machico)",
+        image: "image/15.jpg",
+        path: "audio/15.うまぴょい伝説.mp3"
+      },
+		{
+        name: "사이츠요, 그렇지?",
+        artist: "안나(CV:타카노 아사미), 나나카(CV:카무라 하루카)",
+        image: "image/16.jpg",
+        path: "audio/16.サイツヨでしょ、でしょ？.mp3"
+      },
+		{
+        name: "슈퍼 초콜릿",
+        artist: "시즈루 (CV : 이쿠 텐메 히토미), 리노 (CV : 아스미 카나)",
+        image: "image/17.jpg",
+        path: "audio/17.SUPER CHOCOLATE.mp3"
+      },
+		{
+        name: "절대비밀",
+        artist: "캐릭터 (CV : 타치바나 리카)",
+        image: "image/18.jpg",
+        path: "audio/18.Absolute Secret.mp3"
+      },
+		{
+        name: "여행의 계절",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카)",
+        image: "image/19.jpg",
+        path: "audio/19.旅立ちの季節.mp3"
+      },
+		{
+        name: "Peaceful X 찬 푸루",
+        artist: "업데이트예정..",
+        image: "image/20.jpg",
+        path: "audio/20.Peacefulxちゃんぷるー.mp3"
+      },
+		{
+        name: "미해결 마음",
+        artist: "마코토(CV:코마츠 미카코), 카스미(CV:미나세 이노리)",
+        image: "image/21.jpg",
+        path: "audio/21.未解決な想い.mp3"
+      },
+		{
+        name: "흰 날개 글로리에",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카)",
+        image: "image/22.jpg",
+        path: "audio/22.白翼のグローリエ.mp3"
+      },
+		{
+        name: "등받이 First Kiss",
+        artist: "이오(CV:이토 시즈카), 미사키(CV:쿠노 미사키), 스즈나(CV:우에사카 스미레)",
+        image: "image/23.jpg",
+        path: "audio/23.背伸びFirst Kiss.mp3"
+      },
+		{
+        name: "우리는 황금이다",
+        artist: "마호 (CV : 우치다 마요), 마코토 (CV : 코마츠 미카코), 카오리 (CV : 타카모리 나츠미)",
+        image: "image/24.jpg",
+        path: "audio/24.We Are Golden.mp3"
+      },
+		{
+        name: "나카요시 감각",
+        artist: "유니(CV:오하라 호미), 치에르(CV:사쿠라 아야네), 클로에(CV:타네사키 아츠미)",
+        image: "image/25.jpg",
+        path: "audio/25.なかよしセンセーション.mp3"
+      },
+		{
+        name: "트릭 홀릭",
+        artist: "미미 (CV : 히다카 리나), 쿄우카 (CV : 고쿠라 유이), 미소기 (CV : 모리 세이 스미레)",
+        image: "image/26.jpg",
+        path: "audio/26.トリックホリック.mp3"
+      },
+		{
+        name: "신기루 게임",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카), 유이 (CV : 타네다 리사), 히요리 (CV : 히가시야마 나오), 레이 (CV : 하야미 사오리) ), 셰피 (CV : 콘도 레나)",
+        image: "image/27.jpg",
+        path: "audio/27.Mirage Game.mp3"
+      },
+		{
+        name: "맞아! 소중한 하모니!",
+        artist: "페코린느 (CV : M · A · O), 코코로 (CV : 이토 미라이), 캬루 (CV : 타치바나 리카)",
+        image: "image/28.jpg",
+        path: "audio/28.Yes! Precious Harmony!.mp3"
+      },
+		{
+        name: "전화해 달링!",
+        artist: "노조미 (CV : 히카사 요코), 치카 (CV : 후쿠하라 아야카), 츠무기 (CV : 키토 이부키)",
+        image: "image/29.jpg",
+        path: "audio/29.Call Me Darling!.mp3"
+      },
+		{
+        name: "화염에",
+        artist: "스페셜 위크 (CV. 와키 아즈미), 사일런스 스즈카 (CV. 타카노 마리카), 토우 카이 테이오 (CV. Machico)",
+        image: "image/30.jpg",
+        path: "audio/30.in flames.mp3"
+      },
+		{
+        name: "SAIxKOU 시작 대시",
+        artist: "업데이트예정..",
+        image: "image/31.jpg",
+        path: "audio/31.SAIxKOUスタートダッシュ.mp3"
+      },
+		{
+        name: "나무 모레비 몽타주",
+        artist: "카스미(CV:미나세 이노리), 시오리(CV:코시미즈 아미)",
+        image: "image/32.jpg",
+        path: "audio/32.木もれびモンタージュ.mp3"
+      },
+		{
+        name: "청춘 스피너",
+        artist: "카스미(CV:미나세 이노리), 시오리(CV:코시미즈 아미)",
+        image: "image/33.jpg",
+        path: "audio/33.青春スピナー.mp3"
+      },
+		{
+        name: "하트풀 플레이스",
+        artist: "마힐(CV:닛타 에미), 린(CV:코이와이 코토리)",
+        image: "image/34.jpg",
+        path: "audio/34.Heartful Place.mp3"
+      },
+		{
+        name: "페어리 테일은 꿈에",
+        artist: "리노(CV:아스미카나)",
+        image: "image/35.jpg",
+        path: "audio/35.フェアリーテイルは夢の中.mp3"
+      },
+		{
+        name: "황혼 태평 여로 노래",
+        artist: "루카(CV:사토 리나)",
+        image: "image/36.jpg",
+        path: "audio/36.黄昏太平旅路唄.mp3"
+      },
+		{
+        name: "그 여름의 기억",
+        artist: "미사토 (CV : 쿠니 후다 마리코)",
+        image: "image/37.jpg",
+        path: "audio/37.あの夏のメモリー.mp3"
+      },
+		{
+        name: "이봐, Please!",
+        artist: "요리(CV:하라 사유리), 아카리(CV:아사쿠라 안미)",
+        image: "image/38.jpg",
+        path: "audio/38.ねぇねぇPlease!.mp3"
+      },
+		{
+        name: "역설",
+        artist: "업데이트예정..",
+        image: "image/39.jpg",
+        path: "audio/39.Paradox.mp3"
+      },
+		{
+        name: "빛나는! 사랑스러운 ★ 꿈꾸는",
+        artist: "모니카 (CV : 츠지 아유미), 토모 (CV : 지하라 미사토)",
+        image: "image/40.jpg",
+        path: "audio/40.輝け!ラブリー★ドリーミー.mp3"
+      },
+		{
+        name: "거룩한 열정 장미",
+        artist: "사렌 (CV : 호리에 유이), 아키노 (CV : 마츠 아라시)",
+        image: "image/41.jpg",
+        path: "audio/41.Holy Passion Roses.mp3"
+      },
+		{
+        name: "브랜드 뉴 선라이즈",
+        artist: "업데이트예정..",
+        image: "image/42.jpg",
+        path: "audio/42.Brand New Sunrise.mp3"
+      },
+		{
+        name: "사랑 키라리 매직☆彡",
+        artist: "리마 (CV : 도쿠이 푸른 하늘)",
+        image: "image/43.jpg",
+        path: "audio/43.恋キラリマジック☆彡.mp3"
+      },
+		{
+        name: "무적 드리밍",
+        artist: "치에루(CV:사쿠라 아야네), 클로에(CV:타네사키 아츠미), 유니(CV:오하라 호미)",
+        image: "image/44.jpg",
+        path: "audio/44.無敵ドリーミング.mp3"
+      },
+		{
+        name: "오늘을 잡아라!",
+        artist: "업데이트예정..",
+        image: "image/45.jpg",
+        path: "audio/45.Seize The Day!.mp3"
+      },
+		{
+        name: "너를위한 토모 다치 행진곡",
+        artist: "아오이(CV:하나자와 카나)",
+        image: "image/46.jpg",
+        path: "audio/46.ぼっちのためのトモダチ行進曲.mp3"
+      },
+		{
+        name: "오직 오직 너만",
+        artist: "업데이트예정..",
+        image: "image/47.jpg",
+        path: "audio/47.Only Only You.mp3"
+      },
+		{
+        name: "저스트 모멘트!",
+        artist: "노조미 (CV : 히카사 요코), 치카 (CV : 후쿠하라 아야카), 츠무기 (CV : 키토 이부키)",
+        image: "image/48.jpg",
+        path: "audio/48.ジャストアモーメント！.mp3"
+      },
+		{
+        name: "자기애♡",
+        artist: "유키(CV:오오쿠라 나오미)",
+        image: "image/49.jpg",
+        path: "audio/49.Narcistration♡.mp3"
+      },
+		{
+        name: "할로윈 몬스터 잼!!!",
+        artist: "카오리(CV:타카모리 나츠미), 스즈나(CV:우에사카 스미레), 니논(CV:사토 사토미)",
+        image: "image/50.jpg",
+        path: "audio/50.Halloween Monster Jam !!!.mp3"
+      },
+		{
+        name: "욕심쟁이 사랑",
+        artist: "이오(CV:이토 시즈), 시즈루(CV:이쿠텐메 히토미), 쿠우카(CV:나가츠마 쥬리)",
+        image: "image/51.jpg",
+        path: "audio/51.GREEDY LOVE.mp3"
+      },
+		{
+        name: "푸린 · 아 · 라 · 쿠리 스누나!",
+        artist: "미야코 (CV : 아마미야 텐)",
+        image: "image/52.jpg",
+        path: "audio/52.ぷりん・あ・ら・くりすますなの!.mp3"
+      },
+		{
+        name: "얼음 날개",
+        artist: "셰피 (CV : 콘도 레나)",
+        image: "image/53.jpg",
+        path: "audio/53.Ice Wings.mp3"
+      },
+		{
+        name: "비대칭 세계",
+        artist: "페코린느 (CV : M · A · O), 캐릭터 (CV : 타치바나 리카)",
+        image: "image/54.jpg",
+        path: "audio/54.Asymmetric World.mp3"
+      },
+		{
+        name: "뮤지컬이 들린다",
+        artist: "호두 (CV : 우에다 카나)",
+        image: "image/55.jpg",
+        path: "audio/55.ミュージカルが聴こえる.mp3"
+      },
+		{
+        name: "비밀 그리움",
+        artist: "아유미 (CV : 오세키 에이리)",
+        image: "image/56.jpg",
+        path: "audio/56.Secret Longing.mp3"
+      },
+    ];
+
+    function loadTrack(track_index) {
+      clearInterval(updateTimer);
+      resetValues();
+
+      // 새 트랙 불러오기
+      curr_track.src = track_list[track_index].path;
+      curr_track.load();
+
+      // 트랙 디테일 업데이트
+      track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
+      track_name.textContent = track_list[track_index].name;
+      track_artist.textContent = track_list[track_index].artist;
+      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.";
+
+      // 탐색 슬라이더 업데이트 간격 - 1000밀리초.
+      updateTimer = setInterval(seekUpdate, 1000);
+
+      // 현재 트랙 재생이 끝나면 다음 트랙으로 이동
+      curr_track.addEventListener("ended", nextTrack);
+
+      // 임의의 배경색 적용
+      random_bg_color();
+    }
+
+    function random_bg_color() {
+
+      // 64에서 256 사이의 임의의 숫자.
+      let red = Math.floor(Math.random() * 256) + 64;
+      let green = Math.floor(Math.random() * 256) + 64;
+      let blue = Math.floor(Math.random() * 256) + 64;
+
+      // 주어진 값으로 색 구성
+      let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
+
+      // 배경을 해당 색상으로 설정
+      document.body.style.background = bgColor;
+    }
+
+    // 값 재설정
+    function resetValues() {
+      curr_time.textContent = "00:00";
+      total_duration.textContent = "00:00";
+      seek_slider.value = 0;
+    }
+
+    function playpauseTrack() {
+      if (!isPlaying) playTrack();
+      else pauseTrack();
+    }
+
+    function playTrack() {
+      curr_track.play();
+      isPlaying = true;
+
+      // 일시 중지 아이콘 변경
+      playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
+    }
+
+    function pauseTrack() {
+      curr_track.pause();
+      isPlaying = false;
+
+      // 재생 아이콘 변경
+      playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
+    }
+
+    function nextTrack() {
+      if (track_index < track_list.length - 1)
+        track_index += 1;
+      else track_index = 0;
+      loadTrack(track_index);
+      playTrack();
+    }
+
+    function prevTrack() {
+      if (track_index > 0)
+        track_index -= 1;
+      else track_index = track_list.length;
+      loadTrack(track_index);
+      playTrack();
+    }
+
+    function seekTo() {
+      seekto = curr_track.duration * (seek_slider.value / 100);
+      curr_track.currentTime = seekto;
+    }
+
+    function setVolume() {
+      curr_track.volume = volume_slider.value / 100;
+    }
+
+    function seekUpdate() {
+      let seekPosition = 0;
+
+      // 현재 트랙 길이가 읽을 수 있는 숫자인지 확인
+      if (!isNaN(curr_track.duration)) {
+        seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+        seek_slider.value = seekPosition;
+
+        // 남은 시간과 총 소요 시간 계산
+        let currentMinutes = Math.floor(curr_track.currentTime / 60);
+        let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+        let durationMinutes = Math.floor(curr_track.duration / 60);
+        let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+        // 한 자리 시간 값에 0 더하기
+        if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+        if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+        if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+        if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
+
+        curr_time.textContent = currentMinutes + ":" + currentSeconds;
+        total_duration.textContent = durationMinutes + ":" + durationSeconds;
+      }
+    }
+
+    // 트랙 목록의 첫 번째 트랙 로드
+    loadTrack(track_index);
+  </script>
+</body>
+
+</html>					
