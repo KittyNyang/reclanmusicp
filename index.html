@@ -559,7 +559,7 @@
       track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
       track_name.textContent = track_list[track_index].name;
       track_artist.textContent = track_list[track_index].artist;
-      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.";
+      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.\nMusic by Cygames";
 
       // 탐색 슬라이더 업데이트 간격 - 1000밀리초.
       updateTimer = setInterval(seekUpdate, 1000);
