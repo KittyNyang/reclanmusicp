@@ -559,7 +559,7 @@
       track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
       track_name.textContent = track_list[track_index].name;
       track_artist.textContent = track_list[track_index].artist;
-      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.\nMusic by Cygames";
+      now_playing.textContent = "현재 " + track_list.length + "번째 트랙중 " + (track_index + 1) +"번째 트랙 재생중입니다.";
 
       // 탐색 슬라이더 업데이트 간격 - 1000밀리초.
       updateTimer = setInterval(seekUpdate, 1000);
@@ -666,6 +666,10 @@
     // 트랙 목록의 첫 번째 트랙 로드
     loadTrack(track_index);
   </script>
+	<!-- 푸터-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; Music's by Cygames</div></div>
+        </footer>
 </body>
 
 </html>					
